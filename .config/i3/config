@@ -26,7 +26,7 @@ floating_maximum_size 1000 x 800
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec terminator
+bindsym $mod+Return exec gnome-terminal --hide-menubar
 
 # kill focused window
 bindsym $mod+Shift+a kill
@@ -88,15 +88,6 @@ bindsym $mod+q focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
-
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+10 workspace 10
-
-# move focused container to workspace
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+10 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -161,17 +152,18 @@ bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
 bindsym Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/screenshots/'
 bindsym Control+$mod+s exec pm-suspend
-bindsym Control+$mod+g exec setxkbmap gb; exec xmodmap -e "keycode 66 = Escape NoSymbol Escape"; exec xmodmap -e "clear Lock"
-bindsym Control+$mod+f exec setxkbmap fr; exec xmodmap -e "keycode 66 = Escape NoSymbol Escape"; exec xmodmap -e "clear Lock"
-bindsym Control+$mod+u exec setxkbmap us; exec xmodmap -e "keycode 66 = Escape NoSymbol Escape"; exec xmodmap -e "clear Lock"
+bindsym Control+$mod+g exec sh /home/brian/.dotfiles/keyboard_gb.sh
+bindsym Control+$mod+f exec sh /home/brian/.dotfiles/keyboard_fr.sh
+bindsym Control+$mod+u exec sh /home/brian/.dotfiles/keyboard_us.sh
 
-set $tag1 "1: "
+set $tag1 "1: "
 set $tag2 "2: >_"
-set $tag3 "3: "
-set $tag4 "4: "
-set $tag5 "5: "
-set $tag6 "6: "
-set $tag7 "7: "
+set $tag3 "3: "
+set $tag4 "4: "
+set $tag5 "5: "
+set $tag6 "6: T"
+set $tag7 "7: F"
+set $tag8 "8: E"
 
 # switch to workspace
 workspace_layout tabbed
@@ -182,6 +174,7 @@ bindsym $mod+4 workspace $tag4; layout tabbed
 bindsym $mod+5 workspace $tag5; layout tabbed
 bindsym $mod+6 workspace $tag6; layout tabbed
 bindsym $mod+7 workspace $tag7; layout tabbed
+bindsym $mod+8 workspace $tag8; layout tabbed
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $tag1
@@ -191,6 +184,17 @@ bindsym $mod+Shift+4 move container to workspace $tag4
 bindsym $mod+Shift+5 move container to workspace $tag5
 bindsym $mod+Shift+6 move container to workspace $tag6
 bindsym $mod+Shift+7 move container to workspace $tag7
+bindsym $mod+Shift+8 move container to workspace $tag8
+
+# bind workspaces to screens
+workspace $tag1 output eDP-1
+workspace $tag2 output HDMI-1
+workspace $tag3 output HDMI-1
+workspace $tag4 output DP-1
+workspace $tag5 output DP-1
+workspace $tag6 output DP-1
+workspace $tag7 output DP-1
+workspace $tag8 output DP-1
 
 #gaps
 for_window [class="^.*"] border pixel 0
