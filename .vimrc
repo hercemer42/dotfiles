@@ -4,6 +4,7 @@ filetype off
 call plug#begin()
 
 Plug 'joshdick/onedark.vim'
+Plug 'hercemer42/night-owl.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
@@ -16,7 +17,6 @@ Plug 'w0rp/ale'
 Plug 'maralla/completor.vim'
 Plug 'Quramy/vim-js-pretty-template'
 Plug 'heavenshell/vim-jsdoc'
-Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
@@ -31,9 +31,10 @@ filetype plugin indent on
 "set t_Co=256
 let base16colorspace=256
 set termguicolors
-let g:onedark_color_overrides = {"black": {"gui": "#1a1a1a", "cterm": "235", "cterm16": "0" }}
+" let g:onedark_color_overrides = {"black": {"gui": "#1a1a1a", "cterm": "235", "cterm16": "0" }}
 
-colorscheme onedark
+" colorscheme onedark
+colorscheme night-owl
 set syntax=on
 hi VertSplit guifg=bg guibg=bg
 
@@ -68,11 +69,10 @@ set showmode
 set laststatus=2
 set hlsearch
 set guicursor=i:ver25-iCursor
-set nofoldenable
 set encoding=utf8
-" split more naturally
 set splitright
 set splitbelow
+set foldmethod=marker
 " highlight current line
 set cul
 " Configure invisible characters
@@ -89,9 +89,9 @@ noremap ; :
 noremap , ;
 " Mapping space to leader key
 map <Space> <Leader>
-"semicolons helper
+" semicolons helper
 nnoremap <Leader>; A;<esc>
-"paste helper
+" paste helper
 nnoremap <Leader>p :set paste!<CR>
 " Replaces tabs with spaces
 nnoremap <Leader>t :0,$s/\t/  /g<CR>
@@ -171,14 +171,6 @@ function! LightlineLinterOK() abort
   return l:counts.total == 0 ? '✓ ' : ''
 endfunction
 
-function! MyFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
-
-function! MyFileformat()
-  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction
-
 autocmd User ALELint call s:MaybeUpdateLightline()
 
 " Update and show lightline but only if it's visible (e.g., not in Goyo)
@@ -242,3 +234,6 @@ let g:gitgutter_sign_modified = '∙'
 let g:gitgutter_sign_removed = '∙'
 let g:gitgutter_sign_modified_removed = '∙'
 
+au BufRead,BufNewfile * syn match fmrkr '"*/\*{{{\*/\|"*/\*}}}\*/' |
+  \ hi fmrkr term=NONE guibg=#01101c guifg=#01101c
+  \ ctermbg=black ctermfg=black
