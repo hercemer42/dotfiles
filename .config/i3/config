@@ -160,6 +160,7 @@ bindsym Control+$mod+s exec pm-suspend
 bindsym Control+$mod+g exec sh /home/brian/.dotfiles/keyboard_gb.sh
 bindsym Control+$mod+f exec sh /home/brian/.dotfiles/keyboard_fr.sh
 bindsym Control+$mod+u exec sh /home/brian/.dotfiles/keyboard_us.sh
+bindsym $mod_l exec i3lock
 
 set $tag1 "1: "
 set $tag2 "2: >_"
@@ -212,4 +213,6 @@ for_window [class="^.*"] border pixel 0
 
 # startup apps
 exec --no-startup-id nm-applet
-exec --no-startup-id feh --bg-max ~/Pictures/Mars/mesas.jpg
+exec --no-startup-id feh --bg-max ~/.dotfiles/.config/i3/mars-terraformed.jpg
+exec --no-startup-id xautolock -time 10 -locker i3lock
+

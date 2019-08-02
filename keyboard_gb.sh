@@ -1,4 +1,4 @@
-setxkbmap gb
+setxkbmap gb extd
 sleep .2
 xmodmap -e "clear Lock"
 sleep .2
