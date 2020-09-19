@@ -1,0 +1,8 @@
+{
+    "keyboard.dispatch": "keyCode",
+    "window.menuBarVisibility": "toggle",
+    "workbench.editor.openSideBySideDirection": "down",
+    "vim.useSystemClipboard": true,
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2
+}
