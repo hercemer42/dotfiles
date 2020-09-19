@@ -26,7 +26,7 @@ floating_maximum_size 1000 x 800
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec gnome-terminal --hide-menubar
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+a kill
@@ -152,15 +152,14 @@ client.placeholder      #455073 #23293b #FFFFFF #23293b   #23293b
 client.background       #FFFFFF
 
 # Custom KeyBinds
-bindsym Control+mod1+l exec sh ~/.config/i3/i3lock.sh
+bindsym Control+$mod+l exec i3lock
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
 bindsym Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/screenshots/'
 bindsym Control+$mod+s exec pm-suspend
-bindsym Control+$mod+g exec sh /home/brian/.dotfiles/keyboard_gb.sh
-bindsym Control+$mod+f exec sh /home/brian/.dotfiles/keyboard_fr.sh
-bindsym Control+$mod+u exec sh /home/brian/.dotfiles/keyboard_us.sh
-bindsym $mod_l exec i3lock
+bindsym Control+$mod+g exec sh /home/brian/dotfiles/keyboard_gb.sh
+bindsym Control+$mod+f exec sh /home/brian/dotfiles/keyboard_fr.sh
+bindsym Control+$mod+u exec sh /home/brian/dotfiles/keyboard_us.sh
 
 set $tag1 "1: "
 set $tag2 "2: >_"
@@ -174,7 +173,7 @@ set $tag9 "9: "
 
 # switch to workspace
 workspace_layout tabbed
-bindsym $mod+1 workspace $tag1; layout splith
+bindsym $mod+1 workspace $tag1;
 bindsym $mod+2 workspace $tag2; layout tabbed
 bindsym $mod+3 workspace $tag3; layout tabbed
 bindsym $mod+4 workspace $tag4; layout tabbed
@@ -199,20 +198,20 @@ bindsym $mod+Shift+9 move container to workspace $tag9
 workspace $tag1 output eDP-1
 workspace $tag2 output HDMI-1
 workspace $tag3 output HDMI-1
-workspace $tag4 output DP-1
-workspace $tag5 output DP-1
-workspace $tag6 output DP-1
-workspace $tag7 output DP-1
-workspace $tag8 output DP-1
-workspace $tag9 output DP-1
+workspace $tag4 output DP-2
+workspace $tag5 output DP-2
+workspace $tag6 output DP-2
+workspace $tag7 output DP-2
+workspace $tag8 output DP-2
+workspace $tag9 output DP-2
 
 #gaps
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 1
 # gaps inner 10
-# new_window border pixel 0
+new_window 1pixel
 
 # startup apps
 exec --no-startup-id nm-applet
-exec --no-startup-id feh --bg-max ~/.dotfiles/.config/i3/mars-terraformed.jpg
+exec --no-startup-id feh --bg-max ~/.config/i3/mars-terraformed.jpg
 exec --no-startup-id xautolock -time 10 -locker i3lock
 
