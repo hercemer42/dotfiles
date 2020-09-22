@@ -1,0 +1,1 @@
+sudo alsactl restore
